@@ -1,8 +1,9 @@
 import os
 from huey.contrib.djhuey import task
 from core.ai.mistral import mistral_client
-from core.ai.chromadb import cv_collection
+from core.ai.chromadb import collection
 from dotenv import load_dotenv
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 
 load_dotenv()
@@ -49,13 +50,24 @@ def process_cv_in_background(cv_id):
             cv.parsed_text = parsed_text
             cv.save()
             
+            # Split text
+            text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=1000,
+                chunk_overlap=200,
+                separators=["\n\n", "\n", " ", ""]
+            )
+            chunks = text_splitter.split_text(parsed_text)
+            print(chunks)
+            print(len(chunks))
+            
             # Store in ChromaDB if available
-            if cv_collection:
-                cv_collection.add(
-                    documents=[parsed_text],
-                    metadatas=[{"cv_id": str(cv.id), "user_id": cv.user_id}],
-                    ids=[str(cv.id)]
-                )
+            if collection:
+                # Store chunks
+                for i, chunk in enumerate(chunks):
+                    collection.add(
+                        documents=[chunk],
+                        ids=[f"{str(cv.id)}_{i}"]
+                    )
             
             return True
             
