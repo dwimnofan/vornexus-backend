@@ -4,6 +4,9 @@ from core.ai.mistral import mistral_client
 from core.ai.chromadb import collection
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from django.contrib.auth import get_user_model
+from matching.task import job_matching
+
 
 
 load_dotenv()
@@ -68,6 +71,11 @@ def process_cv_in_background(cv_id):
                         documents=[chunk],
                         ids=[f"{str(cv.id)}_{i}"]
                     )
+            
+            User = get_user_model()
+            user = User.objects.get(id=cv.user_id)
+
+            job_matching(user, cv.id)
             
             return True
             

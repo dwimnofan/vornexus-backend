@@ -23,6 +23,12 @@ try:
             name="cv_collection",
             embedding_function=embedding_function
         )
+
+        job_collection = chroma_client.get_or_create_collection(
+            name="job_collection",
+            embedding_function=embedding_function
+        )
+
 except chromadb.errors.ChromaError as e:
     print(f"Error initializing ChromaDB: {e}")
     chroma_client = None

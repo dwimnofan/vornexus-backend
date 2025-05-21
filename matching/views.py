@@ -17,7 +17,6 @@ class JobRecommendationView(APIView):
 
         limit = request.query_params.get('limit')
         recommendations = JobRecommendation.objects.filter(user=user)
-        print("Count recommendations:", recommendations.count())
 
         if limit is not None:
             try:
