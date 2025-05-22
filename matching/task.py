@@ -2,7 +2,7 @@ import os
 import json
 import re
 from huey.contrib.djhuey import task
-from core.ai.chromadb import job_collection, chroma_client, embedding_function
+from core.ai.chromadb import job_collection, chroma_client
 from dotenv import load_dotenv
 from cv.models import CV
 from core.ai.pm import PromptManager
@@ -58,6 +58,11 @@ def job_matching(user, cv_id):
         documents=job_entries,
         ids=[str(i) for i in range(len(job_entries))]
     )
+
+    # Get the embedding function from the job_collection
+    embedding_function = None
+    if hasattr(job_collection, 'embedding_function'):
+        embedding_function = job_collection.embedding_function
 
     job_vacancies = chroma_client.get_collection("job_collection", embedding_function=embedding_function)
 

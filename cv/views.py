@@ -14,7 +14,6 @@ from .tasks import process_cv_in_background
 
 class CVUploadView(APIView):
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]  # Allow unauthenticated users for demo
 
     def post(self, request):
         try:

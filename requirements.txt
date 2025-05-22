@@ -1,8 +1,10 @@
 django>=5.2.0
 djangorestframework>=3.16.0
+djangorestframework-simplejwt>=5.5.0
 mistralai>=1.7.0
 chromadb>=1.0.0
 openai>=1.0.0
 python-dotenv>=1.0.0
 huey>=2.5.0
+redis==6.1.0
 langchain>=0.1.0
