@@ -42,7 +42,88 @@ python manage.py run_huey --workers 5
 
 You can adjust the number of workers based on your system's capabilities. More workers allow for more parallel processing of CV files.
 
-## Authentication
+## 🔐 Authentication API
+
+### Register a New User
+
+**Endpoint:** `POST /api/register`
+
+**Description:** Register a new user account.
+
+**Request Body:**
+```json
+{
+  "name": "Ismail",
+  "email": "ismail@example.com",
+  "password": "securePassword123"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "User registered successfully",
+  "user_id": "uuid",
+  "token": "jwt_token"
+}
+```
+
+### Login
+
+**Endpoint:** `POST /api/login`
+
+**Description:** Authenticate a user and receive a JWT token.
+
+**Request Body:**
+```json
+{
+  "email": "ismail@example.com",
+  "password": "securePassword123"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Login successful",
+  "token": "jwt_token",
+  "user": {
+    "id": "uuid",
+    "name": "Ismail",
+    "email": "ismail@example.com"
+  }
+}
+```
+
+### Refresh Token
+
+**Endpoint:** `POST /api/token/refresh`
+
+**Description:** Get a new access token using a refresh token.
+
+**Request Body:**
+```json
+{
+  "refresh": "refresh_token"
+}
+```
+
+**Response:**
+```json
+{
+  "access": "new_access_token"
+}
+```
+
+## Using JWT Authentication
+
+For protected endpoints, include the JWT token in the Authorization header:
+
+```
+Authorization: Bearer <your_jwt_token>
+```
+
+## Authentication for Endpoints
 
 For demonstration purposes, the API endpoints are currently configured to allow unauthenticated access. In a production environment, you should enable authentication by modifying the `permission_classes` in `cv/views.py`:
 
@@ -93,3 +174,8 @@ The CV processing happens in the background, and the text will be parsed and sto
 - [x] Create get Job Recommendations Endpoint
   - [http://localhost:8000/api/recommendations](http://localhost:8000/api/recommendations)
   - [http://localhost:8000/api/recommendations/?limit=3](http://localhost:8000/api/recommendations/?limit=3)
+  
+- [x] Implement JWT Authentication
+  - [http://localhost:8000/api/register](http://localhost:8000/api/register)
+  - [http://localhost:8000/api/login](http://localhost:8000/api/login)
+  - [http://localhost:8000/api/token/refresh](http://localhost:8000/api/token/refresh)
