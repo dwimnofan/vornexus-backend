@@ -22,4 +22,5 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/cv/', include('cv.urls')),
     path('api/matching/', include('matching.urls')),
+    path('api/jobs_crawler/', include('jobs_crawler.urls')),
 ]

@@ -8,3 +8,8 @@ python-dotenv>=1.0.0
 huey>=2.5.0
 redis==6.1.0
 langchain>=0.1.0
+crawl4ai>=0.6.3
+django-filter==23.3
+psycopg2-binary==2.9.9
+celery==5.3.4
+gunicorn==21.2.0
