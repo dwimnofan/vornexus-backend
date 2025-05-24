@@ -6,10 +6,10 @@ from django.core.files.base import ContentFile
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from .models import CV
 from .serializers import CVUploadSerializer
-from .tasks import process_cv_in_background
+from .tasks import process_cv
 
 
 class CVUploadView(APIView):
@@ -17,6 +17,18 @@ class CVUploadView(APIView):
 
     def post(self, request):
         try:
+            user_id = str(request.user.id)
+            existing_cv = CV.objects.filter(user_id=user_id).first()
+            
+            if existing_cv:
+                if existing_cv.file_url and os.path.exists(existing_cv.file_url):
+                    try:
+                        os.remove(existing_cv.file_url)
+                    except OSError:
+                        pass 
+                
+                existing_cv.delete()
+            
             file = request.FILES.get('file')
             if not file:
                 return Response({"error": "No file was uploaded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -33,19 +45,15 @@ class CVUploadView(APIView):
             
             absolute_file_path = os.path.join(settings.MEDIA_ROOT, saved_path)
             
-            user_id = request.user.id if request.user.is_authenticated else "anonymous"
             cv_obj = CV.objects.create(
                 user_id=user_id,
                 file_url=absolute_file_path
             )
             
-            # Queue the background task with Huey
-            process_cv_in_background(cv_obj.id)
+            process_cv(cv_obj.id)
             
             serializer = CVUploadSerializer(cv_obj)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
             
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
