@@ -1,0 +1,69 @@
+[1] Job Title: Front-end Developer
+Company Name: Binar Academy
+Experience Required: Not explicitly stated, but likely requires experience aligning with their upskilling programs.
+Education Required: Not specified, typical requirements could include degrees in fields like Computer Science or Information Technology.
+Skills Required: Proficiency in front-end technologies is implied, likely including JavaScript, HTML, CSS, and potentially React or similar frameworks as part of digital initiatives.
+Job Domain: IT
+
+[2] Job Title: Web Developer
+Company Name: PT Astra International Tbk
+Experience Required: Not specified, but requires programming skills in specific languages
+Education Required: Minimal pendidikan D3 dari jurusan Teknik Informatika, Sistem Informasi, Ilmu Komputer dan jurusan lain yang relavan
+Skills Required: Kemampuan pemrograman dalam .Net/PHP/Javascript, komunikasi yang baik, keterampilan interpersonal, motivasi tinggi untuk mempelajari teknologi baru, kemampuan bekerja mandiri dan dalam tim
+Job Domain: IT
+
+[3] Job Title: Back End Developer
+Company Name: PT Bank Digital BCA (BCA Digital)
+Experience Required: 3+ years for mid-level, 5+ years for senior-level positions in backend development.
+Education Required: Not specified, but relevant experience in backend development, particularly in the financial services or internet banking domain, is expected.
+Skills Required: Java (17-21), Spring Boot, microservices architecture, GitLab CI/CD, Kubernetes, PostgreSQL, Kafka, Redis, RESTful APIs, secure system development, problem-solving skills.
+Job Domain: IT
+
+[4] Job Title: Labs Bootcamp Program
+Company Name: Shopee
+Experience Required: Final year student or fresh graduates (not specified)
+Education Required: Bachelor’s Degree from any major
+Skills Required: Basic coding skills, understanding of fundamental computer science
+Job Domain: IT
+
+[5] Job Title: Back End Engineer (Credit) - Sea Labs
+Company Name: Shopee
+Experience Required: Relevant experience in Web/Backend development with proven expertise in Golang.
+Education Required: Bachelor's degree or above in Computer Science or related fields
+Skills Required: Golang, Backend Development, Distributed Systems Design, Coding and Programming, Performance Tuning, Concurrency Handling, Data Structures, Database Knowledge, Linux Development, Docker, Kubernetes.
+Job Domain: IT
+
+[6] Job Title: Front-end Developer (Web)
+Company Name: Sagara Technology
+Experience Required: Not specifically mentioned; likely entry-level based on duties and application count
+Education Required: Not explicitly mentioned, but typically requires a degree in Computer Science or a related field
+Skills Required: HTML, CSS, user-friendly web design, speed optimization, collaborative skills with backend teams, prototyping, troubleshooting, emerging technologies awareness     
+Job Domain: IT
+
+[7] Job Title: Web Developer
+Company Name: PT Bank Digital BCA (BCA Digital)
+Experience Required: 2-3 years of Web Developer experience using TypeScript, React.js, and Next.js.
+Education Required: Not specified, but related experience is crucial.
+Skills Required: Proficiency in React.js and Next.js, good understanding of micro frontend architecture, experience with client-side tools like React Query, Redux, knowledge of infrastructure like Docker and Kubernetes, familiarity with Java and Spring Boot, good communication and collaboration skills, understanding of software security, code testing, and bug troubleshooting.
+Job Domain: IT
+
+[8] Job Title: Web Developer
+Company Name: PT Astra International Tbk
+Experience Required: No explicit experience requirement.
+Education Required: Minimal pendidikan D3 jurusan Teknik Informatika, Sistem Informasi, Ilmu Komputer dan jurusan lain yang relevan.
+Skills Required: .Net, PHP, JavaScript
+Job Domain: IT
+
+[9] Job Title: Web Developer
+Company Name: PT Astra International Tbk
+Experience Required: Experience in web application development with .Net, PHP, or Javascript.
+Education Required: Minimum D3 in Teknik Informatika, Sistem Informasi, Ilmu Komputer, or other relevant fields.
+Skills Required: Good communication skills, interpersonal skills, motivation to learn new technology, teamwork and independence.
+Job Domain: IT
+
+[10] Job Title: Web Developer
+Company Name: PT Bank Digital BCA (BCA Digital)
+Experience Required: 2-3 years of Web Developer experience using TypeScript, React.js, and Next.js.
+Education Required: Not specifically mentioned, but experience in relevant roles is necessary. Preferred experience in Banking Industry.
+Skills Required: Proficiency in React.js and Next.js, TypeScript, understanding of micro frontend architecture, client-side tools like React Query, Redux, Docker, Kubernetes, and preferably Java and Spring Boot.
+Job Domain: IT

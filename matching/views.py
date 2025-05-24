@@ -6,6 +6,7 @@ from .models import JobRecommendation
 from .serializers import JobRecommendationSerializer
 
 class JobRecommendationView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         permission_classes = [IsAuthenticated]

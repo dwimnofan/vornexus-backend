@@ -17,7 +17,7 @@ OPENAI_API_KEY=your_openai_api_key
 This application uses ChromaDB for vector storage. To run ChromaDB:
 
 ```bash
-docker run -p 8000:8000 chromadb/chroma
+chroma run --path ./chroma-data --port 8010
 ```
 
 Make sure Docker is installed and running on your system.
