@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Notification System</h1>
+    <div id="notif"></div>
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/ws/notifications/")
+
+        ws.onopen= () => {
+            console.log("connect")
+        };
+
+        ws.onclose=()=>{
+            console.log("Disconnect")
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data)
+            const notifContainer = document.getElementById("notif")
+            
+            const newNotif = document.createElement('h3')
+            newNotif.textContent = data.message
+            notifContainer.append(newNotif)
+            console.log(event)
+
+        }
+    </script>
+</body>
+</html>

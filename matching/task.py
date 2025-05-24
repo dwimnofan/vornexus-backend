@@ -11,6 +11,8 @@ from pydantic import BaseModel, Field
 from typing import List, Literal
 from django.utils import timezone
 from datetime import date
+from notifications.methods import send_notification
+
 
 load_dotenv()
 
@@ -448,3 +450,5 @@ def job_matching(user, cv_id):
                 print(f"⚠️ JobRecommendation #{idx} sudah ada untuk user {user.username}, dilewati.")
         else:
             print(f"❌ Job {job['title']} di {job['company']} tidak ditemukan di database.")
+
+    send_notification("Mathcing jobs completed")
