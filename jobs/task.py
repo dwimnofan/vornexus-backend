@@ -21,25 +21,23 @@ MAX_JOBS_PER_KEYWORD = 15  # max job per kategori
 
 CATEGORY_KEYWORDS = {
     "Teknologi ": [
-        "software engineer", 
-        # "software engineer", "devops engineer", "data scientist",
-        # "cybersecurity analyst", "qa engineer", "ui/ux designer", "cloud engineer",
-        # "backend", "frontend", "full stack", "mobile developer", "machine learning", "data analyst", "qa tester"
+        "software engineer", "devops engineer", "data scientist",
+        "cybersecurity analyst", "qa engineer", "ui/ux designer", "cloud engineer",
+        "backend", "frontend", "full stack", "mobile developer", "machine learning", "data analyst", "qa tester"
     ],
     "Bisnis dan Manajemen": [
-        "digital marketing",
-    #     "business analyst", "project manager", "product manager",
-    #     "hr specialist", "recruiter", "marketing specialist", "digital marketing",
-    #     "finance analyst", "accountant"
+        "business analyst", "project manager", "product manager",
+        "hr specialist", "recruiter", "marketing specialist", "digital marketing",
+        "finance analyst", "accountant"
     ],
-    # "Kreatif": [
-    #     "graphic designer", "ui designer", "content writer", "copywriter",
-    #     "video editor", "social media specialist", "brand strategist"
-    # ],
-    # "Manufaktur": [
-    #     "mechanical engineer", "industrial engineer", "supply chain analyst",
-    #     "procurement specialist", "quality assurance engineer", "qa manufaktur", "qa logistik"
-    # ]
+    "Kreatif": [
+        "graphic designer", "ui designer", "content writer", "copywriter",
+        "video editor", "social media specialist", "brand strategist"
+    ],
+    "Manufaktur": [
+        "mechanical engineer", "industrial engineer", "supply chain analyst",
+        "procurement specialist", "quality assurance engineer", "qa manufaktur", "qa logistik"
+    ]
 }
 
 
