@@ -9,6 +9,7 @@ class JobRecommendation(models.Model):
     recommended_at = models.DateTimeField(auto_now_add=True)
     score = models.FloatField(blank=True, null=True)  # optional, misal skor relevansi rekomendasi
     matched_skills = models.JSONField(default=list, blank=True)  # list of skills that matched with the job
+    reason = models.TextField(blank=True, null=True)  # alasan rekomendasi, bisa diisi manual atau otomatis
 
     class Meta:
         unique_together = ('user', 'job')  # supaya user tidak dapat rekomendasi job yang sama berulang

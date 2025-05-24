@@ -17,6 +17,7 @@ class JobSerializer(serializers.ModelSerializer):
             'company_industry',
             'company_employee_size',
             'location',
+            'date_posted',
             'required_skills',
             'job_description',
             'url',
@@ -41,6 +42,7 @@ class JobRecommendationSerializer(serializers.ModelSerializer):
     job = JobSerializer(read_only=True)
     match_score = serializers.FloatField(source='score')
     matched_skills = serializers.ListField(child=serializers.CharField(), default=[])
+    reason = serializers.CharField(allow_blank=True, required=False)
 
     class Meta:
         model = JobRecommendation
@@ -48,4 +50,5 @@ class JobRecommendationSerializer(serializers.ModelSerializer):
             'job',
             'match_score',
             'matched_skills',
+            'reason',
         ]
