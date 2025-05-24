@@ -8,7 +8,6 @@ class CV(models.Model):
         ('bisnis_manajemen', 'Bisnis dan Manajemen'),
         ('kreatif', 'Kreatif'),
         ('industri_manufaktur', 'Industri dan Manufaktur'),
-        ('uncategorized', 'Uncategorized'),
     ]
 
     STATUS_CHOICES = [
@@ -17,8 +16,8 @@ class CV(models.Model):
         ('completed', 'Completed'),
         ('failed', 'Failed'),
     ]
-    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_id = models.CharField(max_length=255, unique=True)
     user_id = models.CharField(max_length=255, unique=True)
     file_url = models.CharField(max_length=255)
     parsed_text = models.TextField(blank=True, null=True)
@@ -74,8 +73,6 @@ class CV(models.Model):
         # find highest score
         if max(category_scores.values()) > 0:
             return max(category_scores, key=category_scores.get)
-        else:
-            return 'uncategorized'
     
     def save(self, *args, **kwargs):
         if self.parsed_text and not kwargs.get('skip_categorization', False):

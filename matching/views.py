@@ -9,8 +9,9 @@ class JobRecommendationView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        permission_classes = [IsAuthenticated]
+        
         user = request.user
-
         limit = request.query_params.get('limit')
         recommendations = JobRecommendation.objects.filter(user=user)
 
@@ -27,4 +28,5 @@ class JobRecommendationView(APIView):
         serializer = JobRecommendationSerializer(recommendations, many=True)
         return Response(serializer.data)
 
+    
     

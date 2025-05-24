@@ -1,22 +1,54 @@
-# apps/jobmatching/serializers.py
 from rest_framework import serializers
-from .models import JobRecommendation
+from jobs.models import Job
+from matching.models import JobRecommendation
+import ast
 
-class JobRecommendationSerializer(serializers.ModelSerializer):
+class JobSerializer(serializers.ModelSerializer):
+    required_skills = serializers.SerializerMethodField()
+
     class Meta:
-        model = JobRecommendation
+        model = Job
         fields = [
-            'job_id',
-            'title',
+            'job_hash',  # misal sebagai job_id
+            'job_title',
             'company_logo',
-            'company',
+            'company_name',
             'company_desc',
             'company_industry',
             'company_employee_size',
             'location',
-            'match_score',
-            'matched_skills',
+            'date_posted',
             'required_skills',
             'job_description',
-            'apply_link',
+            'url',
+        ]
+
+    def get_required_skills(self, obj):
+        if obj.skills_required:
+            try:
+                # Parse string Python list ke list Python asli
+                skills_list = ast.literal_eval(obj.skills_required)
+                # pastikan hasilnya list dan semua element adalah string
+                if isinstance(skills_list, list):
+                    return [str(skill).strip() for skill in skills_list]
+                else:
+                    return []
+            except Exception:
+                # fallback kalau parsing gagal, kembalikan string utuh
+                return [obj.skills_required]
+        return []
+
+class JobRecommendationSerializer(serializers.ModelSerializer):
+    job = JobSerializer(read_only=True)
+    match_score = serializers.FloatField(source='score')
+    matched_skills = serializers.ListField(child=serializers.CharField(), default=[])
+    reason = serializers.CharField(allow_blank=True, required=False)
+
+    class Meta:
+        model = JobRecommendation
+        fields = [
+            'job',
+            'match_score',
+            'matched_skills',
+            'reason',
         ]

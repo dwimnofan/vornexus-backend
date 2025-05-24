@@ -10,8 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cv', '0001_initial'),
-        ('jobs', '0001_initial'),
+        ('jobs', '0004_rename_scraped_at_job_created_at_and_more'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -19,12 +18,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='JobRecommendation',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('score_match', models.FloatField()),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('recommended_at', models.DateTimeField(auto_now_add=True)),
-                ('cv', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recommendations', to='cv.cv')),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recommendations', to='jobs.job')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recommendations', to=settings.AUTH_USER_MODEL)),
+                ('score', models.FloatField(blank=True, null=True)),
+                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recommended_to', to='jobs.job')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='job_recommendations', to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'unique_together': {('user', 'job')},
+            },
         ),
     ]

@@ -1,28 +1,18 @@
-# jobs/models.py
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.conf import settings
+from jobs.models import Job
 
-User = get_user_model()
 
 class JobRecommendation(models.Model):
-    id = models.AutoField(primary_key=True)
-    
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recommendations')
-    # cv = models.ForeignKey('cv.CV', on_delete=models.CASCADE, related_name='recommendations')
-    job_id = models.CharField(max_length=100)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    company_logo = models.URLField(blank=True, null=True)
-    company = models.CharField(max_length=255, blank=True, null=True)
-    company_desc = models.TextField(blank=True, null=True)
-    company_industry = models.CharField(max_length=255, blank=True, null=True)
-    company_employee_size = models.CharField(max_length=100, blank=True, null=True)
-    location = models.CharField(max_length=255, blank=True, null=True)
-    match_score = models.IntegerField(blank=True, null=True)
-    matched_skills = models.JSONField(default=list, blank=True)
-    required_skills = models.JSONField(default=list, blank=True)
-    job_description = models.TextField()
-    apply_link = models.URLField(blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='job_recommendations')
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='recommended_to')
     recommended_at = models.DateTimeField(auto_now_add=True)
+    score = models.FloatField(blank=True, null=True)  # optional, misal skor relevansi rekomendasi
+    matched_skills = models.JSONField(default=list, blank=True)  # list of skills that matched with the job
+    reason = models.TextField(blank=True, null=True)  # alasan rekomendasi, bisa diisi manual atau otomatis
+
+    class Meta:
+        unique_together = ('user', 'job')  # supaya user tidak dapat rekomendasi job yang sama berulang
 
     def __str__(self):
-        return f"Recommendation for {self.user.username} - {self.title} at {self.company} (score: {self.match_score})"
+        return f"Recommendation for {self.user.username}: {self.job.job_title}"

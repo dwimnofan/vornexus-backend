@@ -14,10 +14,6 @@ class Migration(migrations.Migration):
             model_name='jobrecommendation',
             name='job',
         ),
-        migrations.RemoveField(
-            model_name='jobrecommendation',
-            name='score_match',
-        ),
         migrations.AddField(
             model_name='jobrecommendation',
             name='apply_link',

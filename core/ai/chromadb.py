@@ -14,6 +14,11 @@ embedding_function = OpenAIEmbeddingFunction(
     model_name="text-embedding-3-small"
 )
 
+collection = chroma_client.get_or_create_collection(
+    name="cv_collection",
+    embedding_function=embedding_function
+)
+
 job_collection = chroma_client.get_or_create_collection(
     name="job_collection",
     embedding_function=embedding_function
