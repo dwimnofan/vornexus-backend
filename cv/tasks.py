@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from django.contrib.auth import get_user_model
 from matching.task import job_matching
 from cv.utils import clean_cv_text
+from notifications.methods import send_notification
 
 load_dotenv()
 
@@ -17,7 +18,7 @@ def process_cv(cv_id):
         
         cv.status = "processing"
         cv.save()
-        
+        send_notification("Processing CV")
         file_path = cv.file_url
         
         if not os.path.exists(file_path):
@@ -54,7 +55,7 @@ def process_cv(cv_id):
         cv.parsed_text = cleaned_text
         cv.status = "completed"
         cv.save()
-        
+        send_notification("Processing completed")
         User = get_user_model()
         user = User.objects.get(id=cv.user_id)
 
@@ -73,6 +74,7 @@ def process_cv(cv_id):
             try:
                 cv.status = "failed"
                 cv.save()
+                send_notification("Failed to process CV. Please try again")
             except Exception as save_error:
                 print(f"Failed to update CV status to failed: {str(save_error)}")
         
