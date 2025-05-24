@@ -2,12 +2,11 @@ import os
 import json
 import re
 from huey.contrib.djhuey import task
-from core.ai.chromadb import job_collection, chroma_client
+from core.ai.chromadb import job_collection, chroma_client, embedding_function
 from dotenv import load_dotenv
 from cv.models import CV
 from core.ai.pm import PromptManager
 from matching.models import JobRecommendation 
-from django.contrib.auth import get_user_model
 
 
 from pydantic import BaseModel, Field
@@ -35,12 +34,6 @@ class MatchingJob(BaseModel):
 @task()
 def job_matching(user, cv_id):
     pm = PromptManager()
-    User = get_user_model()
-    try:
-        user = User.objects.get(username='ismail')  
-        print(f"User found: {user.id}")
-    except User.DoesNotExist:
-        return print({"error": "User not found"}, status=404)
 
     # Ambil objek CV, bukan langsung field parsed_text
     cv = CV.objects.filter(id=cv_id).first()
@@ -58,11 +51,6 @@ def job_matching(user, cv_id):
         documents=job_entries,
         ids=[str(i) for i in range(len(job_entries))]
     )
-
-    # Get the embedding function from the job_collection
-    embedding_function = None
-    if hasattr(job_collection, 'embedding_function'):
-        embedding_function = job_collection.embedding_function
 
     job_vacancies = chroma_client.get_collection("job_collection", embedding_function=embedding_function)
 
