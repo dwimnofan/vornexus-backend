@@ -55,7 +55,7 @@ def process_cv(cv_id):
         cv.parsed_text = cleaned_text
         cv.status = "completed"
         cv.save()
-        send_notification("Processing completed")
+        send_notification("CV processed successfully")
         User = get_user_model()
         user = User.objects.get(id=cv.user_id)
 
