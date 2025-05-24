@@ -451,4 +451,4 @@ def job_matching(user, cv_id):
         else:
             print(f"❌ Job {job['title']} di {job['company']} tidak ditemukan di database.")
 
-send_notification("Mathcing jobs completed")
+    send_notification("Mathcing jobs completed")
