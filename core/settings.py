@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3a_s02=ftik4wu)cnmk&^mceh!!6+y327p6o-#n+pt-$b3n)1_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -98,21 +98,14 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.environ.get("PG_DATABASE", "carifit"),
-#         "USER": os.environ.get("PG_USER", "carifit"),
-#         "PASSWORD": os.environ.get("PG_PASSWORD", "carifit"),
-#         "HOST": os.environ.get("PG_HOST", "localhost"),
-#         "PORT": os.environ.get("PG_PORT", "5432"),
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("PG_DATABASE", "carifit"),
+        "USER": os.environ.get("PG_USER", "carifit"),
+        "PASSWORD": os.environ.get("PG_PASSWORD", "carifit"),
+        "HOST": os.environ.get("PG_HOST", "localhost"),
+        "PORT": os.environ.get("PG_PORT", "5432"),
     }
 }
 
