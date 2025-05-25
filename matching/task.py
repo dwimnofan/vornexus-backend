@@ -101,7 +101,7 @@ def job_matching(user, cv_id):
 
     parsed_cv = cv.parsed_text
     category = analyze_cv_category(parsed_cv)
-    print(f"Kategori pekerjaan yang dianalisis: {category["category"]}")
+    print(f"Kategori pekerjaan yang dianalisis: {category['category']}")
     collection = get_collection_by_category(category["category"])
     print("Total jobs in collection:", collection.count())
 
