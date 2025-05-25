@@ -12,6 +12,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 embedding_function = OpenAIEmbeddingFunction(
     api_key=openai_api_key,
     model_name="text-embedding-3-small",
+    dimensions=384
 )
 
 collection = chroma_client.get_or_create_collection(
