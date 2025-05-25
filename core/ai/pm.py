@@ -16,6 +16,12 @@ class PromptManager:
 
     def add_message(self, role, content):
         self.messages.append({"role": role, "content": content})
+    
+    def set_messages(self, messages):
+        self.messages = messages
+
+    def get_messages(self):
+        return self.messages
 
     def generate(self):
         response = client.chat.completions.create(

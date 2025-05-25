@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3a_s02=ftik4wu)cnmk&^mceh!!6+y327p6o-#n+pt-$b3n)1_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,12 +48,12 @@ INSTALLED_APPS = [
     'jobs',
     'cv',
     'users',
+    'chats',
     'huey.contrib.djhuey',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,14 +98,21 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.environ.get("PG_DATABASE", "carifit"),
+#         "USER": os.environ.get("PG_USER", "carifit"),
+#         "PASSWORD": os.environ.get("PG_PASSWORD", "carifit"),
+#         "HOST": os.environ.get("PG_HOST", "localhost"),
+#         "PORT": os.environ.get("PG_PORT", "5432"),
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("PG_DATABASE", "carifit"),
-        "USER": os.environ.get("PG_USER", "carifit"),
-        "PASSWORD": os.environ.get("PG_PASSWORD", "carifit"),
-        "HOST": os.environ.get("PG_HOST", "localhost"),
-        "PORT": os.environ.get("PG_PORT", "5432"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -143,13 +150,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Whitenoise configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Media files
 MEDIA_URL = '/media/'
