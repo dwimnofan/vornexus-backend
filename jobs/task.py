@@ -17,7 +17,7 @@ print(time.timezone)      # Offset dalam detik dari UTC (negatif kalau di depan 
 
 
 
-MAX_JOBS_PER_KEYWORD = 15  # max job per kategori
+MAX_JOBS_PER_KEYWORD = 5  # max job per kategori
 
 CATEGORY_KEYWORDS = {
     "Teknologi ": [
@@ -41,7 +41,7 @@ CATEGORY_KEYWORDS = {
 }
 
 
-@periodic_task(crontab(hour=10, minute=30), name="crawl_jobs") # 17-30 dikurangi 7 jam
+@periodic_task(crontab(hour=5, minute=0), name="crawl_jobs") # 12-00 dikurangi 7 jam
 def crawl_jobs():
     try:
         asyncio.run(crawl_jobs_async())
