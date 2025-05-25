@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 import re
 
 class CV(models.Model):
@@ -16,8 +15,6 @@ class CV(models.Model):
         ('completed', 'Completed'),
         ('failed', 'Failed'),
     ]
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_id = models.CharField(max_length=255, unique=True)
     user_id = models.CharField(max_length=255, unique=True)
     file_url = models.CharField(max_length=255)
     parsed_text = models.TextField(blank=True, null=True)
