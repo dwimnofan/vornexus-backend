@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.contrib.auth.models import User
 import re
 
 class CV(models.Model):
@@ -17,7 +18,7 @@ class CV(models.Model):
         ('failed', 'Failed'),
     ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_id = models.CharField(max_length=255, unique=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     user_id = models.CharField(max_length=255, unique=True)
     file_url = models.CharField(max_length=255)
     parsed_text = models.TextField(blank=True, null=True)
