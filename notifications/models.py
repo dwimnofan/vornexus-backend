@@ -6,5 +6,5 @@ class Notification(models.Model):
     message = models.TextField()
 
     def save(self, *args, **kwargs):
-        task_send_notification(self.message)
+        send_notification(self.message)
         super().save(*args, **kwargs)

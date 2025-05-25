@@ -14,7 +14,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-from .urls import websocket_urlpatterns
+from .routing import websocket_urlpatterns
 
 application = ProtocolTypeRouter({
     'http':get_asgi_application(),
