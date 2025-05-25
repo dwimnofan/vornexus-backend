@@ -25,7 +25,3 @@ urlpatterns = [
     path('api/matching/', include('matching.urls')),
     path("", include("notifications.urls"))
 ]
-
-websocket_urlpatterns = [
-    path("ws/notifications/",NotificationConsumer.as_asgi())
-]
