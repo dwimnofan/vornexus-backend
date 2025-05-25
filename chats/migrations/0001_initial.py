@@ -11,8 +11,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cv', '0006_merge_20250524_2156'),
-        ('jobs', '0007_job_category'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
